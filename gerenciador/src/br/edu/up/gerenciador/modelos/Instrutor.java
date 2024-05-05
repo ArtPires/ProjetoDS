@@ -50,8 +50,18 @@ public class Instrutor {
 
     // --- Métodos próprios da classe Instrutor --- //
 
-    public Integer montarTreino(){
+    public Integer montarTreino(Aluno aluno, Treino treino){
         
+        if (!treino.filtroDeTreino(aluno)) {
+            System.out.println("Erro ao criar treino do tipo: " + treino.getTipoDeTreino() + 
+                                " para o aluno: " + aluno.getNome());
+            return -1;
+        }
+
+        
+
+
+
         return 0;
     }
 

@@ -85,7 +85,7 @@ public class Aluno {
     // --- Métodos próprios da classe Aluno --- //
     
     public void realizarMatricula(){
-
+        
     }
 
     public void cancelarMatricula(){

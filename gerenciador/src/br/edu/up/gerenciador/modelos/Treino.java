@@ -46,8 +46,22 @@ public class Treino {
     }
 
 
-    public void filtroDeTreino(){
+    public Boolean filtroDeTreino(Aluno aluno){
+        if (getTipoDeTreino() == "" && aluno.getIdade() >= 60){
 
+            return false;
+        }
+
+        if (tipoDeTreino == "" && aluno.getPeso() >= 110 && aluno.getIMC() == 110) {
+            
+            return false;
+        }
+
+
+
+
+
+        return true;
     }
 
     public void criarFichaDeTreino(){

@@ -5,12 +5,19 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class FileManeger {
     
-    public static void escreverArquivo(String nomeArquivo, String conteudo) {
+    public static void escreverArquivo(ArrayList<String> lista) {
+        
+        String nomeArquivo = "DadosAcademia.txt";
+
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(nomeArquivo))) {
-            writer.write(conteudo);
+            for (String elemento : lista) {
+                writer.write(elemento);
+                writer.newLine(); // Adiciona uma nova linha após cada elemento
+            }
             System.out.println("Arquivo escrito com sucesso.");
         } catch (IOException e) {
             System.err.println("Erro ao escrever no arquivo: " + e.getMessage());
