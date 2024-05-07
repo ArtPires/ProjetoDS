@@ -6,18 +6,18 @@ public class Treino {
     
     public String tipoDeTreino;
     public Time duracao;
-    public String objetivo;
+    public Integer numeroDeSeries;
 
-    public Treino(String tipoDeTreino, String objetivo) {
+    public Treino(){ }
+
+    public Treino(String tipoDeTreino) {
         this.tipoDeTreino = tipoDeTreino;
-        this.objetivo = objetivo;
         this.duracao = new Time(0);
     }
 
-    public Treino(String tipoDeTreino, Time duracao, String objetivo) {
+    public Treino(String tipoDeTreino, Time duracao) {
         this.tipoDeTreino = tipoDeTreino;
         this.duracao = duracao;
-        this.objetivo = objetivo;
     }
 
     
@@ -37,34 +37,58 @@ public class Treino {
         this.duracao = duracao;
     }
 
-    public String getObjetivo() {
-        return objetivo;
-    }
-
-    public void setObjetivo(String objetivo) {
-        this.objetivo = objetivo;
-    }
-
 
     public Boolean filtroDeTreino(Aluno aluno){
-        if (getTipoDeTreino() == "" && aluno.getIdade() >= 60){
-
+        if (aluno.getObjetivoDeTreino() != "Infantil" && aluno.getIdade() >= 12 && aluno.getIdade() < 16){
+            System.out.println("Não foi possivel criar um treino do tipo: " + getTipoDeTreino() + 
+                                " pois o aluno " + aluno.getNome() + " não tem idade suficiente para esse treino!");
             return false;
         }
 
-        if (tipoDeTreino == "" && aluno.getPeso() >= 110 && aluno.getIMC() == 110) {
+        if (aluno.getObjetivoDeTreino() == "" && aluno.getPeso() >= 110 && aluno.getIMC() == 110) {
             
             return false;
         }
 
 
-
-
-
         return true;
     }
 
-    public void criarFichaDeTreino(){
+    // Método que cria uma ficha de treino para cada tipo de treino padrão, se o tipo de treino informado é
+    // diferente solicita ao usuário que informe todos os dados necessários para a criação da ficha de treino
+    public void criarFichaDeTreino(String tipoDeTreino){
+
+        switch (tipoDeTreino) {
+            case "Musculação":
+                
+                break;
+
+            case "Emagrecimento":
+                
+                break;
+            
+            case "Qualidade de Vida":
+                
+                break;
+        
+            default:
+                break;
+        }
+
+    }
+
+    // Método que cria 4 treinos previamente montados para facilitar a utilização do programa
+    public static void inicializarTreinos(){
+
+        Treino musculacao = new Treino("Musculação"); 
+        Treino emagrecimento = new Treino("Emagrecimento"); 
+        Treino qualidadeDeVida = new Treino("Qualidade de Vida");
+        Treino infantil = new Treino("Infantil");
+
+        musculacao.criarFichaDeTreino(musculacao.getTipoDeTreino());
+        emagrecimento.criarFichaDeTreino(emagrecimento.getTipoDeTreino());
+        qualidadeDeVida.criarFichaDeTreino(qualidadeDeVida.getTipoDeTreino());
+        infantil.criarFichaDeTreino(infantil.getTipoDeTreino());
 
     }
 

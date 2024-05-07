@@ -8,16 +8,16 @@ public class Aluno {
     private Double peso;
     private Integer idade;
     private Double IMC;
-    private Double tempoDeTreino;
+    private String objetivoDeTreino;
 
     // Construtor da classe Aluno com os atributos obrigatórios para a criação de um novo Aluno
-    public Aluno(String nome, Integer matricula, Double altura, Double peso, Integer idade, Double tempoDeTreino) {
+    public Aluno(String nome, Integer matricula, Double altura, Double peso, Integer idade, String objetivoDeTreino) {
         this.nome = nome;
         this.matricula = matricula;
         this.altura = altura;
         this.peso = peso;
         this.idade = idade;
-        this.tempoDeTreino = tempoDeTreino;
+        this.objetivoDeTreino = objetivoDeTreino;
 
         // Calcula o IMC do aluno de acordo com a altura e peso informados
         this.IMC = peso / (Math.pow(altura, 2));
@@ -65,14 +65,14 @@ public class Aluno {
         this.idade = idade;
     }
 
-    public Double getTempoDeTreino() {
-        return tempoDeTreino;
+    public String getObjetivoDeTreino() {
+        return objetivoDeTreino;
     }
 
-    public void setTempoDeTreino(Double tempoDeTreino) {
-        this.tempoDeTreino = tempoDeTreino;
+    public void setObjetivoDeTreino(String objetivoDeTreino) {
+        this.objetivoDeTreino = objetivoDeTreino;
     }
-
+    
     public Double getIMC() {
         return IMC;
     }
