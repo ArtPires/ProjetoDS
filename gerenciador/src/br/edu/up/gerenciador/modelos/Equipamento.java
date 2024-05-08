@@ -26,4 +26,12 @@ public class Equipamento {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+    @Override
+    public String toString() {
+        return "Equipamento {" + 
+        "funcao='" + this.funcao + '\'' +
+        " capacidade='" + this.capacidade + '\'' +
+        " localizacao='" + this.localizacao + 
+        '}';
+    }
 }

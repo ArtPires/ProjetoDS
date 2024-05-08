@@ -49,4 +49,13 @@ public class Instrutor {
     public void setDisponibilidade(boolean disponibilidade) {
         this.disponibilidade = disponibilidade;
     }
+
+    @Override
+    public String toString() {
+        return "Aluno {" + 
+        "nome='" + this.nome + '\'' +
+        " tipo de aula='" + this.tipoDeAula + '\'' +
+        " disponibilidade='" + this.disponibilidade + 
+        '}';
+    }
 }

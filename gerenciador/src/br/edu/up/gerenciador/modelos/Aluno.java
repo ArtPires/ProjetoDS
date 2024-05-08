@@ -91,4 +91,12 @@ public class Aluno {
         this.objetivoTreino = objetivoTreino;
     }
 
+    @Override
+    public String toString() {
+        return "Aluno {" + 
+        "nome='" + this.nome + '\'' +
+        " matricula='" + this.matricula + '\'' +
+        " objetivo='" + this.objetivoDeTreino + 
+        '}';
+    }
 }

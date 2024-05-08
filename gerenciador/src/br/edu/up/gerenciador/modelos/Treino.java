@@ -79,4 +79,13 @@ public class Treino {
     public void setDuracao(int duracao) {
         this.duracao = duracao;
     }
+    @Override
+    public String toString() {
+        return "Aluno {" + 
+        "tipo de treino='" + this.tipoDeTreino + '\'' +
+        " duracao='" + this.duracao + '\'' +
+        " numero de series='" + this.numeroDeSeries + 
+        '}';
+    }
+
 }
