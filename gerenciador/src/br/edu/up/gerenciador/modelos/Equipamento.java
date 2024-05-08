@@ -29,9 +29,8 @@ public class Equipamento {
     @Override
     public String toString() {
         return "Equipamento {" + 
-        "funcao='" + this.funcao + '\'' +
-        " capacidade='" + this.capacidade + '\'' +
-        " localizacao='" + this.localizacao + 
+        "nome='" + this.nome + '\'' +
+        " descricao='" + this.descricao +
         '}';
     }
 }

@@ -96,7 +96,7 @@ public class Aluno {
         return "Aluno {" + 
         "nome='" + this.nome + '\'' +
         " matricula='" + this.matricula + '\'' +
-        " objetivo='" + this.objetivoDeTreino + 
+        " objetivo='" + this.objetivoTreino + 
         '}';
     }
 }

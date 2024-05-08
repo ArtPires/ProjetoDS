@@ -81,10 +81,10 @@ public class Treino {
     }
     @Override
     public String toString() {
-        return "Aluno {" + 
-        "tipo de treino='" + this.tipoDeTreino + '\'' +
-        " duracao='" + this.duracao + '\'' +
-        " numero de series='" + this.numeroDeSeries + 
+        return "Treino {" + 
+        "aluno='" + this.aluno.getNome() + '\'' +
+        " intrutor='" + this.instrutor.getNome() + '\'' +
+        " descrição='" + this.descricao + 
         '}';
     }
 
