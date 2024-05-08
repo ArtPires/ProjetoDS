@@ -4,14 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Treino {
-//<<<<<<< integracao-de-equipamento-com-treino
     private String tipoDeTreino;
     private String descricao;
     private Integer duracao;
-//=======
-    private Aluno aluno;
-    private Instrutor instrutor;
-//>>>>>>> develop
     private ArrayList<String> fichaDeTreino;
     private List<Equipamento> equipamentosNecessarios;
 
@@ -21,12 +16,12 @@ public class Treino {
         this.equipamentosNecessarios = new ArrayList<>();
     }
 
-//<<<<<<< integracao-de-equipamento-com-treino
     public Treino(String descricao, String tipoDeTreino, Integer duracao) {
         this.descricao = descricao;
         this.tipoDeTreino = tipoDeTreino;
         this.duracao = duracao;
         this.fichaDeTreino = new ArrayList<>();
+        this.equipamentosNecessarios = new ArrayList<>();
     }
 
     // --- Getters e Setters ---
@@ -83,96 +78,108 @@ public class Treino {
         }
 
         if (novoAluno.getObjetivoTreino() == "Emagrecimento"){
+            setDuracao(45);
+            treino.fichaDeTreino.add("Duração de treino: " + duracao + " minutos");
+            fichaDeTreino.add("Exercício 1: Chest Press");
+            fichaDeTreino.add("Exercício 2: Remada Máquina");
+            fichaDeTreino.add("Exercício 3: Cadeira Flexora");
+            fichaDeTreino.add("Exercício 4: Shoulder Press");
+            fichaDeTreino.add("Exercício 5: Cardio");
             
+            treino.fichaDeTreino.add("Equipamentos necessários:");
+            int contador = 1;
             for (Equipamento equipamento : equipamentosNecessarios) {
-                fichaDeTreino.add("Equipamento necessário: " + equipamento.getNome());
+                if(equipamento.getFuncao() == novoAluno.getObjetivoTreino() || equipamento.getFuncao() == "Geral"){
+                    treino.fichaDeTreino.add("Equipamento " + contador + ": " + equipamento.getNome());
+                    contador++;
+                }
             }
-            fichaDeTreino.add("Exercício 2: ");
-            fichaDeTreino.add("Exercício 3: ");
-            fichaDeTreino.add("Exercício 4: ");
-            fichaDeTreino.add("Exercício 1: ");
-            fichaDeTreino.add("Exercício 5: ");
         }
 
         if (novoAluno.getObjetivoTreino() == "Qualidade de Vida"){
-            
+            setDuracao(30);
+            treino.fichaDeTreino.add("Duração de treino: " + duracao + " minutos");
+            fichaDeTreino.add("Exercício 1: Aquecimento");
+            fichaDeTreino.add("Exercício 2: Crucifixo");
+            fichaDeTreino.add("Exercício 3: Puxada Alta");
+            fichaDeTreino.add("Exercício 4: Cadeira Extensora");
+            fichaDeTreino.add("Exercício 5: Cross Over Paralelo");
+
+            treino.fichaDeTreino.add("Equipamentos necessários:");
+            int contador = 1;
             for (Equipamento equipamento : equipamentosNecessarios) {
-                fichaDeTreino.add("Equipamento necessário: " + equipamento.getNome());
+                if(equipamento.getFuncao() == novoAluno.getObjetivoTreino() || equipamento.getFuncao() == "Geral"){
+                    treino.fichaDeTreino.add("Equipamento " + contador + ": " + equipamento.getNome());
+                    contador++;
+                }
             }
-            fichaDeTreino.add("Exercício 1: ");
-            fichaDeTreino.add("Exercício 2: ");
-            fichaDeTreino.add("Exercício 3: ");
-            fichaDeTreino.add("Exercício 4: ");
-            fichaDeTreino.add("Exercício 5: ");
         }
 
         if (novoAluno.getObjetivoTreino() == "Pré-Adolescentes"){
+            setDuracao(45);
+            treino.fichaDeTreino.add("Duração de treino: " + duracao + " minutos");
+            fichaDeTreino.add("Exercício 1: Aquecimeto");
+            fichaDeTreino.add("Exercício 2: Rosca direta");
+            fichaDeTreino.add("Exercício 3: Agachamento");
+            fichaDeTreino.add("Exercício 4: Abdominal");
+            fichaDeTreino.add("Exercício 5: Cardio");
             
+            treino.fichaDeTreino.add("Equipamentos necessários:");
+            int contador = 1;
             for (Equipamento equipamento : equipamentosNecessarios) {
-                fichaDeTreino.add("Equipamento necessário: " + equipamento.getNome());
+                if(equipamento.getFuncao() == novoAluno.getObjetivoTreino() || equipamento.getFuncao() == "Geral"){
+                    treino.fichaDeTreino.add("Equipamento " + contador + ": " + equipamento.getNome());
+                    contador++;
+                }
             }
-            fichaDeTreino.add("Exercício 1: ");
-            fichaDeTreino.add("Exercício 2: ");
-            fichaDeTreino.add("Exercício 3: ");
-            fichaDeTreino.add("Exercício 4: ");
-            fichaDeTreino.add("Exercício 5: ");
         }
 
         return fichaDeTreino;
     }
 
-
     public Boolean filtroDeTreino(Aluno novoAluno) {
-        // TODO: Lógica para filtrar treino de acordo com objetivo do aluno, disponibilidade de equipamentos, etc.
         System.out.println("Filtrando treino para o aluno " + novoAluno.getNome());
-
-        return true;
-//=======
-    public Treino(Aluno aluno, Instrutor instrutor, String descricao) {
-        this.aluno = aluno;
-        this.instrutor = instrutor;
-        this.fichaDeTreino = new ArrayList<>();
-    }
-
-    public void gerarFichaDeTreino() {
-        fichaDeTreino.clear(); // Limpa a ficha de treino anterior, se houver
         
-        if (aluno.getIdade() >= 12 && aluno.getIdade() <= 15) {
-            fichaDeTreino.add("Ficha de Treino para Pré-Adolescentes:");
-            // Lógica para gerar a ficha de treino para pré-adolescentes...
-        } else if (aluno.getIdade() >= 16 && aluno.getIdade() <= 55) {
-            double imc = calcularIMC(aluno.getPeso(), aluno.getAltura());
+        if (novoAluno.getIdade() >= 12 && novoAluno.getIdade() <= 15 && novoAluno.getObjetivoTreino() == "Pré-Adolescentes") {
+            // Pré-adolescentes
+            return true;
+        } 
+        if (novoAluno.getIdade() >= 16 && novoAluno.getIdade() <= 55) {
+            double imc = calcularIMC(novoAluno.getPeso(), novoAluno.getAltura());
             if (imc < 16) {
-                fichaDeTreino.add("Ficha de Treino para Magreza Grave:");
-                // Lógica para gerar a ficha de treino para magreza grave...
-            } else if (imc >= 16 && imc <= 16.9 || imc >= 17 && imc <= 18.5) {
-                fichaDeTreino.add("Ficha de Treino para Ganho de Massa Muscular:");
-                // Lógica para gerar a ficha de treino para ganho de massa muscular...
-            } else if (imc >= 25 && imc <= 29.9) {
-                fichaDeTreino.add("Ficha de Treino para Sobrepeso:");
-                // Lógica para gerar a ficha de treino para sobrepeso...
-            } else if (imc >= 30 && imc <= 34.9) {
-                fichaDeTreino.add("Ficha de Treino para Obesidade Grau I:");
-                // Lógica para gerar a ficha de treino para obesidade grau I...
-            } else if (imc >= 35 && imc <= 39.9) {
-                fichaDeTreino.add("Ficha de Treino para Obesidade Grau II ou Severa:");
-                // Lógica para gerar a ficha de treino para obesidade grau II ou severa...
-            } else {
-                fichaDeTreino.add("Ficha de Treino para Obesidade Grau III ou Mórbida:");
-                // Lógica para gerar a ficha de treino para obesidade grau III ou mórbida...
+                // Tratamento de erro para magreza extrema
+                return false;
+            } 
+            
+            if (imc >= 16 && imc <= 16.9 || imc >= 17 && imc <= 18.5) {
+                if (novoAluno.getObjetivoTreino() == "Ganhar Massa") {
+                    return true;
+                } else {
+                    return false;
+                }
             }
-        } else if (aluno.getIdade() > 55) {
-            fichaDeTreino.add("Ficha de Treino para Qualidade de Vida:");
-            // Lógica para gerar a ficha de treino para qualidade de vida...
+            
+            if (imc >= 25) {
+                if (novoAluno.getObjetivoTreino() == "Emagrecimento"){
+                    return true;
+                } else {
+                    return false;
+                }
+            }
         }
-    }
+        if (novoAluno.getIdade() > 55) {
+            if (novoAluno.getObjetivoTreino() == "Qualidade de Vida"){
+                return true;
+            } else {
+                return false;
+            }
+        }
 
-    // public void enviarFichaDeTreino() {
-    //     aluno.receberFichaDeTreino(fichaDeTreino);
-    // }
+        return false;
+    }
 
     private double calcularIMC(double peso, double altura) {
         return peso / (altura * altura);
-//>>>>>>> develop
+
     }
 }
