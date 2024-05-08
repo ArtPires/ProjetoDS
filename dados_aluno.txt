@@ -3,4 +3,4 @@ Matrícula: 12345
 Altura: 1.75
 Peso: 80.0
 Idade: 25
-Objetivo de Treino: Ganho de Massa
+Objetivo de Treino: Perder peso
