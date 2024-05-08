@@ -1,34 +1,44 @@
 // Aluno.java
 package br.edu.up.gerenciador.modelos;
 
-import java.util.ArrayList;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Aluno {
-    private String nome;
-    private String matricula;
-    private double altura;
-    private double peso;
-    private int idade;
-    private double imc;
-    private String objetivoTreino;
-    private ArrayList<String> fichaDeTreinoRecebida;
 
-    public Aluno(String nome, String matricula, double altura, double peso, int idade) {
+    private static int proximoNumeroMatricula = 10000;
+    private String nome;
+    private String matricula; // Descomente esta linha
+    private Float altura;
+    private Float peso;
+    private int idade;
+    private Float imc;
+    private String objetivoTreino;
+
+    public Aluno(String nome, Float altura, Float peso, int idade) {
         this.nome = nome;
-        this.matricula = matricula;
         this.altura = altura;
         this.peso = peso;
         this.idade = idade;
-        this.fichaDeTreinoRecebida = new ArrayList<>();
-    }
 
-    public void receberFichaDeTreino(ArrayList<String> fichaDeTreino) {
-        this.fichaDeTreinoRecebida = fichaDeTreino;
-        System.out.println("Ficha de treino recebida para " + nome + ": ");
-        for (String exercicio : fichaDeTreino) {
-            System.out.println(exercicio);
-        }
+        // Atribuição da matrícula deve ser feita apenas no construtor
+        this.matricula = Integer.toString(proximoNumeroMatricula);
+
+        // Incremento da matrícula para o próximo aluno
+        proximoNumeroMatricula += 15;
+
+        // Chame o método para salvar os dados em arquivo
+        salvarDadosEmArquivo();
     }
+    // public void receberFichaDeTreino(ArrayList<String> fichaDeTreino) {
+    //     this.fichaDeTreinoRecebida = fichaDeTreino;
+    //     System.out.println("Ficha de treino recebida para " + nome + ": ");
+    //     for (String exercicio : fichaDeTreino) {
+    //         System.out.println(exercicio);
+    //     }
+    // }
+
+    // 
 
     public void definirObjetivo(String objetivo) {
         this.objetivoTreino = objetivo;
@@ -55,7 +65,7 @@ public class Aluno {
         return altura;
     }
 
-    public void setAltura(double altura) {
+    public void setAltura(Float altura) {
         this.altura = altura;
     }
 
@@ -63,7 +73,7 @@ public class Aluno {
         return peso;
     }
 
-    public void setPeso(double peso) {
+    public void setPeso(Float peso) {
         this.peso = peso;
     }
 
@@ -79,7 +89,7 @@ public class Aluno {
         return imc;
     }
 
-    public void setImc(double imc) {
+    public void setImc(Float imc) {
         this.imc = imc;
     }
 
@@ -91,12 +101,26 @@ public class Aluno {
         this.objetivoTreino = objetivoTreino;
     }
 
-    @Override
     public String toString() {
         return "Aluno {" + 
         "nome='" + this.nome + '\'' +
         " matricula='" + this.matricula + '\'' +
         " objetivo='" + this.objetivoTreino + 
         '}';
+    }
+     @SuppressWarnings("static-access")
+    public void salvarDadosEmArquivo() {
+        try {
+            FileWriter writer = new FileWriter("alunos_cadastrados.txt", true);
+            writer.write("Nome: " + this.nome + "\n");
+            writer.write("Matrícula: " + this.proximoNumeroMatricula + "\n");
+            writer.write("Altura: " + this.altura + "\n");
+            writer.write("Peso: " + this.peso + "\n");
+            writer.write("Idade: " + this.idade + "\n\n");
+            writer.close();
+            System.out.println("Dados do aluno salvos com sucesso!");
+        } catch (IOException e) {
+            System.out.println("Erro ao salvar dados!  " + e.getMessage());
+        }
     }
 }
