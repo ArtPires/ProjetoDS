@@ -12,6 +12,7 @@ public class Aluno {
     private double imc;
     private String objetivoTreino;
     private ArrayList<String> fichaDeTreinoRecebida;
+    private ArrayList<Aluno> listaAlunos;
 
     public Aluno(String nome, String matricula, double altura, double peso, int idade) {
         this.nome = nome;
@@ -22,19 +23,7 @@ public class Aluno {
         this.fichaDeTreinoRecebida = new ArrayList<>();
     }
 
-    public void receberFichaDeTreino(ArrayList<String> fichaDeTreino) {
-        this.fichaDeTreinoRecebida = fichaDeTreino;
-        System.out.println("Ficha de treino recebida para " + nome + ": ");
-        for (String exercicio : fichaDeTreino) {
-            System.out.println(exercicio);
-        }
-    }
-
-    public void definirObjetivo(String objetivo) {
-        this.objetivoTreino = objetivo;
-    }
-
-    // Getters e Setters
+    // --- Getters e Setters ---
     public String getNome() {
         return nome;
     }
@@ -91,12 +80,21 @@ public class Aluno {
         this.objetivoTreino = objetivoTreino;
     }
 
-    @Override
-    public String toString() {
-        return "Aluno {" + 
-        "nome='" + this.nome + '\'' +
-        " matricula='" + this.matricula + '\'' +
-        " objetivo='" + this.objetivoTreino + 
-        '}';
+    // --- Métodos únicos da classe Aluno ---
+    
+    public Boolean solicitarFichaDeTreino(Instrutor instrutor){
+        if(!Instrutor.montarTreino(this, instrutor)){
+            // TODO: solicitar ao usuário para definir outro tipo de treino
+            return false;
+        }
+        return true;
+    }
+    
+    public void receberFichaDeTreino(ArrayList<String> fichaDeTreino) {
+        this.fichaDeTreinoRecebida = fichaDeTreino;
+        System.out.println("Ficha de treino recebida para " + nome + ": ");
+        for (String exercicio : fichaDeTreino) {
+            System.out.println(exercicio);
+        }
     }
 }

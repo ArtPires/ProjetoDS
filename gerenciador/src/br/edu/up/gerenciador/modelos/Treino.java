@@ -2,60 +2,29 @@
 package br.edu.up.gerenciador.modelos;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Treino {
-    private Aluno aluno;
-    private Instrutor instrutor;
-    private String descricao;
     private String tipoDeTreino;
-    private int duracao;
+    private String descricao;
+    private Integer duracao;
     private ArrayList<String> fichaDeTreino;
+    private List<Equipamento> equipamentosNecessarios;
 
-    public Treino(Aluno aluno, Instrutor instrutor, String descricao, String tipoDeTreino, int duracao) {
-        this.aluno = aluno;
-        this.instrutor = instrutor;
+    // --- Construtores da classe Treino ---
+    public Treino () { 
+        this.fichaDeTreino = new ArrayList<>(); 
+        this.equipamentosNecessarios = new ArrayList<>();
+    }
+
+    public Treino(String descricao, String tipoDeTreino, Integer duracao) {
         this.descricao = descricao;
         this.tipoDeTreino = tipoDeTreino;
         this.duracao = duracao;
         this.fichaDeTreino = new ArrayList<>();
     }
 
-    public void gerarFichaDeTreino() {
-        // Lógica para gerar a ficha de treino com base no tipo de treino e duração
-        fichaDeTreino.clear(); 
-        fichaDeTreino.add("Tipo de treino: " + tipoDeTreino);
-        fichaDeTreino.add("Duração de treino: " + duracao + " minutos");
-        fichaDeTreino.add("Exercício 1: ");
-        fichaDeTreino.add("Exercício 2: ");
-        fichaDeTreino.add("Exercício 3: ");
-    }
-
-    public void enviarFichaDeTreino() {
-        aluno.receberFichaDeTreino(fichaDeTreino);
-    }
-
-    public void filtroDeTreino() {
-        // Lógica para filtrar treino de acordo com objetivo do aluno, disponibilidade de equipamentos, etc.
-        System.out.println("Filtrando treino para o aluno " + aluno.getNome());
-    }
-
-    // Getters e Setters
-    public Aluno getAluno() {
-        return aluno;
-    }
-
-    public void setAluno(Aluno aluno) {
-        this.aluno = aluno;
-    }
-
-    public Instrutor getInstrutor() {
-        return instrutor;
-    }
-
-    public void setInstrutor(Instrutor instrutor) {
-        this.instrutor = instrutor;
-    }
-
+    // --- Getters e Setters ---
     public String getDescricao() {
         return descricao;
     }
@@ -79,13 +48,79 @@ public class Treino {
     public void setDuracao(int duracao) {
         this.duracao = duracao;
     }
-    @Override
-    public String toString() {
-        return "Treino {" + 
-        "aluno='" + this.aluno.getNome() + '\'' +
-        " intrutor='" + this.instrutor.getNome() + '\'' +
-        " descrição='" + this.descricao + 
-        '}';
+
+
+    // --- Métodos únicos da classe Treino ---
+
+    public ArrayList<String> gerarFichaDeTreino(Aluno novoAluno) {
+        Treino treino = new Treino();
+        treino.fichaDeTreino.add("Ficha de treino de: " + novoAluno.getNome());
+        treino.fichaDeTreino.add("Tipo de treino: " + novoAluno.getObjetivoTreino());
+        
+        if (novoAluno.getObjetivoTreino() == "Ganho de Massa"){
+            setDuracao(60);
+            treino.fichaDeTreino.add("Duração de treino: " + duracao + " minutos");
+            treino.fichaDeTreino.add("Exercício 1: Aquecimento");
+            treino.fichaDeTreino.add("Exercício 2: Supino");
+            treino.fichaDeTreino.add("Exercício 3: Barra Fixa");
+            treino.fichaDeTreino.add("Exercício 4: Leg Press");
+            treino.fichaDeTreino.add("Exercício 5: Bíceps Alternado");
+            treino.fichaDeTreino.add("Exercício 6: Tríceps Press");
+        
+            treino.fichaDeTreino.add("Equipamentos necessários:");
+            int contador = 1;
+            for (Equipamento equipamento : equipamentosNecessarios) {
+                if(equipamento.getFuncao() == novoAluno.getObjetivoTreino() || equipamento.getFuncao() == "Geral"){
+                    treino.fichaDeTreino.add("Equipamento " + contador + ": " + equipamento.getNome());
+                    contador++;
+                }
+            }
+        }
+
+        if (novoAluno.getObjetivoTreino() == "Emagrecimento"){
+            
+            for (Equipamento equipamento : equipamentosNecessarios) {
+                fichaDeTreino.add("Equipamento necessário: " + equipamento.getNome());
+            }
+            fichaDeTreino.add("Exercício 2: ");
+            fichaDeTreino.add("Exercício 3: ");
+            fichaDeTreino.add("Exercício 4: ");
+            fichaDeTreino.add("Exercício 1: ");
+            fichaDeTreino.add("Exercício 5: ");
+        }
+
+        if (novoAluno.getObjetivoTreino() == "Qualidade de Vida"){
+            
+            for (Equipamento equipamento : equipamentosNecessarios) {
+                fichaDeTreino.add("Equipamento necessário: " + equipamento.getNome());
+            }
+            fichaDeTreino.add("Exercício 1: ");
+            fichaDeTreino.add("Exercício 2: ");
+            fichaDeTreino.add("Exercício 3: ");
+            fichaDeTreino.add("Exercício 4: ");
+            fichaDeTreino.add("Exercício 5: ");
+        }
+
+        if (novoAluno.getObjetivoTreino() == "Pré-Adolescentes"){
+            
+            for (Equipamento equipamento : equipamentosNecessarios) {
+                fichaDeTreino.add("Equipamento necessário: " + equipamento.getNome());
+            }
+            fichaDeTreino.add("Exercício 1: ");
+            fichaDeTreino.add("Exercício 2: ");
+            fichaDeTreino.add("Exercício 3: ");
+            fichaDeTreino.add("Exercício 4: ");
+            fichaDeTreino.add("Exercício 5: ");
+        }
+
+        return fichaDeTreino;
     }
 
+
+    public Boolean filtroDeTreino(Aluno novoAluno) {
+        // TODO: Lógica para filtrar treino de acordo com objetivo do aluno, disponibilidade de equipamentos, etc.
+        System.out.println("Filtrando treino para o aluno " + novoAluno.getNome());
+
+        return true;
+    }
 }

@@ -1,28 +1,22 @@
 // Instrutor.java
 package br.edu.up.gerenciador.modelos;
 
+import java.util.ArrayList;
+
 public class Instrutor {
     private String nome;
     private String tipoDeAula;
     private boolean disponibilidade;
+    private ArrayList<Instrutor> listaInstrutores;
+
+    // --- Construtores da classe Instrutor ---
+
+    public Instrutor () { }
 
     public Instrutor(String nome, String tipoDeAula) {
         this.nome = nome;
         this.tipoDeAula = tipoDeAula;
         this.disponibilidade = true; // Por padrão, o instrutor está disponível
-    }
-
-    public void montarTreino(Aluno aluno) {
-        System.out.println("Instrutor " + nome + " está montando um treino para o aluno " + aluno.getNome());
-        // Lógica para montar o treino
-    }
-
-    public void darAula() {
-        if (disponibilidade) {
-            System.out.println("Instrutor " + nome + " está dando aula de " + tipoDeAula);
-        } else {
-            System.out.println("Instrutor " + nome + " não está disponível no momento");
-        }
     }
 
     // Getters e Setters
@@ -42,7 +36,7 @@ public class Instrutor {
         this.tipoDeAula = tipoDeAula;
     }
 
-    public boolean isDisponibilidade() {
+    public boolean getDisponibilidade() {
         return disponibilidade;
     }
 
@@ -50,12 +44,49 @@ public class Instrutor {
         this.disponibilidade = disponibilidade;
     }
 
-    @Override
-    public String toString() {
-        return "Aluno {" + 
-        "nome='" + this.nome + '\'' +
-        " tipo de aula='" + this.tipoDeAula + '\'' +
-        " disponibilidade='" + this.disponibilidade + 
-        '}';
+    public ArrayList<Instrutor> getListaInstrutores() {
+        return listaInstrutores;
+    }
+
+    public void setListaInstrutores(ArrayList<Instrutor> listaInstrutores) {
+        this.listaInstrutores = listaInstrutores;
+    }
+
+
+    // --- Métodos únicos da classe Instrutor ---
+
+    public static Boolean montarTreino(Aluno novoAluno, Instrutor instrutor) {
+        if (instrutor.instrutorDisponivel() == ""){
+            System.out.println("Não foi possivel montar o treino, nenhum instrutor está disponivel no momento");
+            return false;
+        }
+
+        Treino treino = new Treino();
+        if (!treino.filtroDeTreino(novoAluno)) {
+            System.out.println("Não foi possivel montar o treino do tipo: " + novoAluno.getObjetivoTreino() 
+            + " para o aluno: " + novoAluno.getNome() + ". Impedido pelo filtro!");
+            return false;
+        }
+
+        novoAluno.receberFichaDeTreino(treino.gerarFichaDeTreino(novoAluno));
+
+        return true;
+    }
+
+    public String instrutorDisponivel(){
+        for(Instrutor instrutor: listaInstrutores){
+            if(instrutor.getDisponibilidade()){
+                return instrutor.getNome();
+            }
+        }
+        return "";
+    }
+
+    public void darAula() {
+        if (disponibilidade) {
+            System.out.println("Instrutor " + nome + " está dando aula de " + tipoDeAula);
+        } else {
+            System.out.println("Instrutor " + nome + " não está disponível no momento");
+        }
     }
 }

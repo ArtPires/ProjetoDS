@@ -1,26 +1,27 @@
 // Main.java
 package br.edu.up.gerenciador;
 
+import java.util.ArrayList;
+
 import br.edu.up.gerenciador.modelos.Aluno;
 import br.edu.up.gerenciador.modelos.FileManager;
 import br.edu.up.gerenciador.modelos.Instrutor;
-import br.edu.up.gerenciador.modelos.Treino;
 
 public class Main {
     public static void main(String[] args) {
         // Criando um aluno
         Aluno aluno = new Aluno("João", "12345", 1.75, 80.0, 25);
-        aluno.definirObjetivo("Ganhar massa muscular");
+        aluno.setObjetivoTreino("Ganho de Massa");
 
         // Criando um instrutor
         Instrutor instrutor = new Instrutor("Maria", "Musculação");
         instrutor.setDisponibilidade(true); // Definindo o instrutor como disponível
+        ArrayList<Instrutor>listaTeste = new ArrayList<>();
+        listaTeste.add(instrutor);
+        instrutor.setListaInstrutores(listaTeste);
 
         // Criando um treino
-        Treino treino = new Treino(aluno, instrutor, "Treino de pernas", "Musculação", 60);
-        treino.filtroDeTreino(); // Aplicando filtro de treino
-        treino.gerarFichaDeTreino(); // Gerando a ficha de treino
-        treino.enviarFichaDeTreino(); // Enviando a ficha de treino para o aluno
+        aluno.solicitarFichaDeTreino(instrutor);
 
         // Salvando os dados do aluno em um arquivo
         FileManager fileManager = new FileManager();
