@@ -1,0 +1,60 @@
+Nome: Amanda
+Matrícula: 10000
+Altura: 1.6
+Peso: 65.0
+Idade: 22
+
+Nome: Artur
+Matrícula: 10000
+Altura: 1.75
+Peso: 59.0
+Idade: 21
+
+Nome: AMandaari
+Matrícula: 10000
+Altura: 1.65
+Peso: 45.0
+Idade: 15
+
+Nome: zezin
+Matrícula: 10000
+Altura: 1.8
+Peso: 75.0
+Idade: 25
+
+Nome: Amanda
+Matrícula: 10015
+Altura: 1.85
+Peso: 68.0
+Idade: 26
+
+Nome: turico
+Matrícula: 10015
+Altura: 1.9
+Peso: 85.6
+Idade: 32
+
+Nome: Bund�o 
+Matrícula: 10015
+Altura: 1.2
+Peso: 92.0
+Idade: 56
+
+Nome: CARAI
+Matrícula: 10000
+Altura: 5.36
+Peso: 102.0
+Idade: 85
+
+Nome: cagada
+Matrícula: 10015
+Altura: 4.25
+Peso: 306.2
+Idade: 105
+
+Nome: LIMA
+Matrícula: 10030
+Altura: 1.78
+Peso: 69.5
+Idade: 60
+
