@@ -1,49 +1,29 @@
+// Equipamento.java
 package br.edu.up.gerenciador.modelos;
 
 public class Equipamento {
-    
-    private String funcao;
-    private Double capacidade;
-    private String localizacao;
-    private Boolean disponivel;
+    private String nome;
+    private String descricao;
 
-    public Equipamento(String funcao, Double capacidade, String localizacao) {
-        this.funcao = funcao;
-        this.capacidade = capacidade;
-        this.localizacao = localizacao;
-        this.disponivel = true;
+    public Equipamento(String nome, String descricao) {
+        this.nome = nome;
+        this.descricao = descricao;
     }
 
-    public String getFuncao() {
-        return funcao;
+    // Getters e Setters
+    public String getNome() {
+        return nome;
     }
 
-    public void setFuncao(String funcao) {
-        this.funcao = funcao;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public Double getCapacidade() {
-        return capacidade;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setCapacidade(Double capacidade) {
-        this.capacidade = capacidade;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
-
-    public String getLocalizacao() {
-        return localizacao;
-    }
-
-    public void setLocalizacao(String localizacao) {
-        this.localizacao = localizacao;
-    }
-
-    public Boolean getDisponivel() {
-        return disponivel;
-    }
-
-    public void setDisponivel(Boolean disponivel) {
-        this.disponivel = disponivel;
-    }
-
 }
