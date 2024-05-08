@@ -1,26 +1,69 @@
+// Treino.java
 package br.edu.up.gerenciador.modelos;
 
-import java.sql.Time;
+import java.util.ArrayList;
 
 public class Treino {
-    
-    public String tipoDeTreino;
-    public Time duracao;
-    public Integer numeroDeSeries;
+    private Aluno aluno;
+    private Instrutor instrutor;
+    private String descricao;
+    private String tipoDeTreino;
+    private int duracao;
+    private ArrayList<String> fichaDeTreino;
 
-    public Treino(){ }
-
-    public Treino(String tipoDeTreino) {
-        this.tipoDeTreino = tipoDeTreino;
-        this.duracao = new Time(0);
-    }
-
-    public Treino(String tipoDeTreino, Time duracao) {
+    public Treino(Aluno aluno, Instrutor instrutor, String descricao, String tipoDeTreino, int duracao) {
+        this.aluno = aluno;
+        this.instrutor = instrutor;
+        this.descricao = descricao;
         this.tipoDeTreino = tipoDeTreino;
         this.duracao = duracao;
+        this.fichaDeTreino = new ArrayList<>();
     }
 
-    
+    public void gerarFichaDeTreino() {
+        // Lógica para gerar a ficha de treino com base no tipo de treino e duração
+        fichaDeTreino.clear(); 
+        fichaDeTreino.add("Tipo de treino: " + tipoDeTreino);
+        fichaDeTreino.add("Duração de treino: " + duracao + " minutos");
+        fichaDeTreino.add("Exercício 1: ");
+        fichaDeTreino.add("Exercício 2: ");
+        fichaDeTreino.add("Exercício 3: ");
+    }
+
+    public void enviarFichaDeTreino() {
+        aluno.receberFichaDeTreino(fichaDeTreino);
+    }
+
+    public void filtroDeTreino() {
+        // Lógica para filtrar treino de acordo com objetivo do aluno, disponibilidade de equipamentos, etc.
+        System.out.println("Filtrando treino para o aluno " + aluno.getNome());
+    }
+
+    // Getters e Setters
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
+    }
+
+    public Instrutor getInstrutor() {
+        return instrutor;
+    }
+
+    public void setInstrutor(Instrutor instrutor) {
+        this.instrutor = instrutor;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
     public String getTipoDeTreino() {
         return tipoDeTreino;
     }
@@ -29,69 +72,13 @@ public class Treino {
         this.tipoDeTreino = tipoDeTreino;
     }
 
-    public Time getDuracao() {
+    public int getDuracao() {
         return duracao;
     }
 
-    public void setDuracao(Time duracao) {
+    public void setDuracao(int duracao) {
         this.duracao = duracao;
     }
-
-
-    public Boolean filtroDeTreino(Aluno aluno){
-        if (aluno.getObjetivoDeTreino() != "Infantil" && aluno.getIdade() >= 12 && aluno.getIdade() < 16){
-            System.out.println("Não foi possivel criar um treino do tipo: " + getTipoDeTreino() + 
-                                " pois o aluno " + aluno.getNome() + " não tem idade suficiente para esse treino!");
-            return false;
-        }
-
-        if (aluno.getObjetivoDeTreino() == "" && aluno.getPeso() >= 110 && aluno.getIMC() == 110) {
-            
-            return false;
-        }
-
-
-        return true;
-    }
-
-    // Método que cria uma ficha de treino para cada tipo de treino padrão, se o tipo de treino informado é
-    // diferente solicita ao usuário que informe todos os dados necessários para a criação da ficha de treino
-    public void criarFichaDeTreino(String tipoDeTreino){
-
-        switch (tipoDeTreino) {
-            case "Musculação":
-                
-                break;
-
-            case "Emagrecimento":
-                
-                break;
-            
-            case "Qualidade de Vida":
-                
-                break;
-        
-            default:
-                break;
-        }
-
-    }
-
-    // Método que cria 4 treinos previamente montados para facilitar a utilização do programa
-    public static void inicializarTreinos(){
-
-        Treino musculacao = new Treino("Musculação"); 
-        Treino emagrecimento = new Treino("Emagrecimento"); 
-        Treino qualidadeDeVida = new Treino("Qualidade de Vida");
-        Treino infantil = new Treino("Infantil");
-
-        musculacao.criarFichaDeTreino(musculacao.getTipoDeTreino());
-        emagrecimento.criarFichaDeTreino(emagrecimento.getTipoDeTreino());
-        qualidadeDeVida.criarFichaDeTreino(qualidadeDeVida.getTipoDeTreino());
-        infantil.criarFichaDeTreino(infantil.getTipoDeTreino());
-
-    }
-
     @Override
     public String toString() {
         return "Aluno {" + 

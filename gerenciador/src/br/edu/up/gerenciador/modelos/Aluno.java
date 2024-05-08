@@ -1,30 +1,40 @@
+// Aluno.java
 package br.edu.up.gerenciador.modelos;
 
+import java.util.ArrayList;
+
 public class Aluno {
-
     private String nome;
-    private Integer matricula;
-    private Double altura;
-    private Double peso;
-    private Integer idade;
-    private Double IMC;
-    private String objetivoDeTreino;
+    private String matricula;
+    private double altura;
+    private double peso;
+    private int idade;
+    private double imc;
+    private String objetivoTreino;
+    private ArrayList<String> fichaDeTreinoRecebida;
 
-    // Construtor da classe Aluno com os atributos obrigatórios para a criação de um novo Aluno
-    public Aluno(String nome, Integer matricula, Double altura, Double peso, Integer idade, String objetivoDeTreino) {
+    public Aluno(String nome, String matricula, double altura, double peso, int idade) {
         this.nome = nome;
         this.matricula = matricula;
         this.altura = altura;
         this.peso = peso;
         this.idade = idade;
-        this.objetivoDeTreino = objetivoDeTreino;
-
-        // Calcula o IMC do aluno de acordo com a altura e peso informados
-        this.IMC = peso / (Math.pow(altura, 2));
+        this.fichaDeTreinoRecebida = new ArrayList<>();
     }
 
-    // --- Métodos de get e set da classe Aluno --- //
+    public void receberFichaDeTreino(ArrayList<String> fichaDeTreino) {
+        this.fichaDeTreinoRecebida = fichaDeTreino;
+        System.out.println("Ficha de treino recebida para " + nome + ": ");
+        for (String exercicio : fichaDeTreino) {
+            System.out.println(exercicio);
+        }
+    }
 
+    public void definirObjetivo(String objetivo) {
+        this.objetivoTreino = objetivo;
+    }
+
+    // Getters e Setters
     public String getNome() {
         return nome;
     }
@@ -33,80 +43,52 @@ public class Aluno {
         this.nome = nome;
     }
 
-    public Integer getMatricula() {
+    public String getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(Integer matricula) {
+    public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
 
-    public Double getAltura() {
+    public double getAltura() {
         return altura;
     }
 
-    public void setAltura(Double altura) {
+    public void setAltura(double altura) {
         this.altura = altura;
     }
 
-    public Double getPeso() {
+    public double getPeso() {
         return peso;
     }
 
-    public void setPeso(Double peso) {
+    public void setPeso(double peso) {
         this.peso = peso;
     }
 
-    public Integer getIdade() {
+    public int getIdade() {
         return idade;
     }
 
-    public void setIdade(Integer idade) {
+    public void setIdade(int idade) {
         this.idade = idade;
     }
 
-    public String getObjetivoDeTreino() {
-        return objetivoDeTreino;
+    public double getImc() {
+        return imc;
     }
 
-    public void setObjetivoDeTreino(String objetivoDeTreino) {
-        this.objetivoDeTreino = objetivoDeTreino;
-    }
-    
-    public Double getIMC() {
-        return IMC;
+    public void setImc(double imc) {
+        this.imc = imc;
     }
 
-    public void setIMC(Double imc) {
-        IMC = imc;
+    public String getObjetivoTreino() {
+        return objetivoTreino;
     }
 
-
-    // --- Métodos próprios da classe Aluno --- //
-    
-    public void realizarMatricula(){
-        
-    }
-
-    public void cancelarMatricula(){
-
-    }
-
-    public void pagarMatricula(){
-
-    }
-
-    public Boolean marcarTreino(){
-        
-        return true;
-    }
-
-    public void realizarTreino(){
-        
-    }
-
-    public void solicitarPlanoDeTreino(){
-
+    public void setObjetivoTreino(String objetivoTreino) {
+        this.objetivoTreino = objetivoTreino;
     }
 
     @Override

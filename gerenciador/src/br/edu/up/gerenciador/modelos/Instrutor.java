@@ -1,28 +1,31 @@
+// Instrutor.java
 package br.edu.up.gerenciador.modelos;
 
 public class Instrutor {
-    
     private String nome;
     private String tipoDeAula;
-    private Boolean disponibilidade;
+    private boolean disponibilidade;
 
-    // --- Construtores da classe Instrutor --- //
-    // Construtor define um novo Instrutor com a disponibilidade como true por padrão 
     public Instrutor(String nome, String tipoDeAula) {
         this.nome = nome;
         this.tipoDeAula = tipoDeAula;
-        this.disponibilidade = true;
+        this.disponibilidade = true; // Por padrão, o instrutor está disponível
     }
 
-    // Construtor define um novo Instrutor com os atributos passados na inicialização do objeto
-    public Instrutor(String nome, String tipoDeAula, Boolean disponibilidade) {
-        this.nome = nome;
-        this.tipoDeAula = tipoDeAula;
-        this.disponibilidade = disponibilidade;
+    public void montarTreino(Aluno aluno) {
+        System.out.println("Instrutor " + nome + " está montando um treino para o aluno " + aluno.getNome());
+        // Lógica para montar o treino
     }
 
-    // --- Métodos de get e set da classe Instrutor --- //
+    public void darAula() {
+        if (disponibilidade) {
+            System.out.println("Instrutor " + nome + " está dando aula de " + tipoDeAula);
+        } else {
+            System.out.println("Instrutor " + nome + " não está disponível no momento");
+        }
+    }
 
+    // Getters e Setters
     public String getNome() {
         return nome;
     }
@@ -39,34 +42,12 @@ public class Instrutor {
         this.tipoDeAula = tipoDeAula;
     }
 
-    public Boolean getDisponibilidade() {
+    public boolean isDisponibilidade() {
         return disponibilidade;
     }
 
-    public void setDisponibilidade(Boolean disponibilidade) {
+    public void setDisponibilidade(boolean disponibilidade) {
         this.disponibilidade = disponibilidade;
-    }
-
-
-    // --- Métodos próprios da classe Instrutor --- //
-
-    public Integer montarTreino(Aluno aluno, Treino treino){
-        
-        if (!treino.filtroDeTreino(aluno)) {
-            System.out.println("Erro ao criar treino do tipo: " + treino.getTipoDeTreino() + 
-                                " para o aluno: " + aluno.getNome());
-            return -1;
-        }
-
-        
-
-
-
-        return 0;
-    }
-
-    public void darAula(){
-        
     }
 
     @Override
