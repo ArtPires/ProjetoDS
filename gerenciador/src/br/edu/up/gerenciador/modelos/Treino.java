@@ -1,4 +1,3 @@
-// Treino.java
 package br.edu.up.gerenciador.modelos;
 
 import java.util.ArrayList;
@@ -6,86 +5,52 @@ import java.util.ArrayList;
 public class Treino {
     private Aluno aluno;
     private Instrutor instrutor;
-    private String descricao;
-    private String tipoDeTreino;
-    private int duracao;
     private ArrayList<String> fichaDeTreino;
 
-    public Treino(Aluno aluno, Instrutor instrutor, String descricao, String tipoDeTreino, int duracao) {
+    public Treino(Aluno aluno, Instrutor instrutor, String descricao) {
         this.aluno = aluno;
         this.instrutor = instrutor;
-        this.descricao = descricao;
-        this.tipoDeTreino = tipoDeTreino;
-        this.duracao = duracao;
         this.fichaDeTreino = new ArrayList<>();
     }
 
     public void gerarFichaDeTreino() {
-        // Lógica para gerar a ficha de treino com base no tipo de treino e duração
-        fichaDeTreino.clear(); 
-        fichaDeTreino.add("Tipo de treino: " + tipoDeTreino);
-        fichaDeTreino.add("Duração de treino: " + duracao + " minutos");
-        fichaDeTreino.add("Exercício 1: ");
-        fichaDeTreino.add("Exercício 2: ");
-        fichaDeTreino.add("Exercício 3: ");
+        fichaDeTreino.clear(); // Limpa a ficha de treino anterior, se houver
+        
+        if (aluno.getIdade() >= 12 && aluno.getIdade() <= 15) {
+            fichaDeTreino.add("Ficha de Treino para Pré-Adolescentes:");
+            // Lógica para gerar a ficha de treino para pré-adolescentes...
+        } else if (aluno.getIdade() >= 16 && aluno.getIdade() <= 55) {
+            double imc = calcularIMC(aluno.getPeso(), aluno.getAltura());
+            if (imc < 16) {
+                fichaDeTreino.add("Ficha de Treino para Magreza Grave:");
+                // Lógica para gerar a ficha de treino para magreza grave...
+            } else if (imc >= 16 && imc <= 16.9 || imc >= 17 && imc <= 18.5) {
+                fichaDeTreino.add("Ficha de Treino para Ganho de Massa Muscular:");
+                // Lógica para gerar a ficha de treino para ganho de massa muscular...
+            } else if (imc >= 25 && imc <= 29.9) {
+                fichaDeTreino.add("Ficha de Treino para Sobrepeso:");
+                // Lógica para gerar a ficha de treino para sobrepeso...
+            } else if (imc >= 30 && imc <= 34.9) {
+                fichaDeTreino.add("Ficha de Treino para Obesidade Grau I:");
+                // Lógica para gerar a ficha de treino para obesidade grau I...
+            } else if (imc >= 35 && imc <= 39.9) {
+                fichaDeTreino.add("Ficha de Treino para Obesidade Grau II ou Severa:");
+                // Lógica para gerar a ficha de treino para obesidade grau II ou severa...
+            } else {
+                fichaDeTreino.add("Ficha de Treino para Obesidade Grau III ou Mórbida:");
+                // Lógica para gerar a ficha de treino para obesidade grau III ou mórbida...
+            }
+        } else if (aluno.getIdade() > 55) {
+            fichaDeTreino.add("Ficha de Treino para Qualidade de Vida:");
+            // Lógica para gerar a ficha de treino para qualidade de vida...
+        }
     }
 
-    public void enviarFichaDeTreino() {
-        aluno.receberFichaDeTreino(fichaDeTreino);
-    }
+    // public void enviarFichaDeTreino() {
+    //     aluno.receberFichaDeTreino(fichaDeTreino);
+    // }
 
-    public void filtroDeTreino() {
-        // Lógica para filtrar treino de acordo com objetivo do aluno, disponibilidade de equipamentos, etc.
-        System.out.println("Filtrando treino para o aluno " + aluno.getNome());
+    private double calcularIMC(double peso, double altura) {
+        return peso / (altura * altura);
     }
-
-    // Getters e Setters
-    public Aluno getAluno() {
-        return aluno;
-    }
-
-    public void setAluno(Aluno aluno) {
-        this.aluno = aluno;
-    }
-
-    public Instrutor getInstrutor() {
-        return instrutor;
-    }
-
-    public void setInstrutor(Instrutor instrutor) {
-        this.instrutor = instrutor;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public String getTipoDeTreino() {
-        return tipoDeTreino;
-    }
-
-    public void setTipoDeTreino(String tipoDeTreino) {
-        this.tipoDeTreino = tipoDeTreino;
-    }
-
-    public int getDuracao() {
-        return duracao;
-    }
-
-    public void setDuracao(int duracao) {
-        this.duracao = duracao;
-    }
-    @Override
-    public String toString() {
-        return "Treino {" + 
-        "aluno='" + this.aluno.getNome() + '\'' +
-        " intrutor='" + this.instrutor.getNome() + '\'' +
-        " descrição='" + this.descricao + 
-        '}';
-    }
-
 }
