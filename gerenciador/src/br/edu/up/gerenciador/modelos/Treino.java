@@ -92,4 +92,13 @@ public class Treino {
 
     }
 
+    @Override
+    public String toString() {
+        return "Aluno {" + 
+        "tipo de treino='" + this.tipoDeTreino + '\'' +
+        " duracao='" + this.duracao + '\'' +
+        " numero de series='" + this.numeroDeSeries + 
+        '}';
+    }
+
 }

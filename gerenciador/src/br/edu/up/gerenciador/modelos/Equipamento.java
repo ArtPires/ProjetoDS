@@ -46,4 +46,12 @@ public class Equipamento {
         this.disponivel = disponivel;
     }
 
+    @Override
+    public String toString() {
+        return "Equipamento {" + 
+        "funcao='" + this.funcao + '\'' +
+        " capacidade='" + this.capacidade + '\'' +
+        " localizacao='" + this.localizacao + 
+        '}';
+    }
 }
