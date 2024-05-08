@@ -5,35 +5,34 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class FileManeger {
     
-    public static void escreverArquivo(ArrayList<String> lista) {
-        
-        String nomeArquivo = "DadosAcademia.txt";
+    private String caminhoCompleto;
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(nomeArquivo))) {
-            for (String elemento : lista) {
-                writer.write(elemento);
-                writer.newLine(); // Adiciona uma nova linha após cada elemento
-            }
-            System.out.println("Arquivo escrito com sucesso.");
+    public void escreverArquivo(String nomeArquivo, String conteudo, Boolean adicionar) {
+        caminhoCompleto = "gerenciador/src/br/edu/up/gerenciador/arquivos/" + nomeArquivo;
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(caminhoCompleto, adicionar))) {
+            writer.write(conteudo);
+            writer.newLine();
+            System.out.println("Conteúdo escrito com sucesso em " + nomeArquivo);
         } catch (IOException e) {
-            System.err.println("Erro ao escrever no arquivo: " + e.getMessage());
+            System.err.println("Erro ao escrever no arquivo " + nomeArquivo + ": " + e.getMessage());
         }
     }
 
-    public static void lerArquivo(String nomeArquivo) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(nomeArquivo))) {
+    public String lerArquivo(String nomeArquivo) {
+        caminhoCompleto = "gerenciador/src/br/edu/up/gerenciador/arquivos/" + nomeArquivo;
+        StringBuilder conteudo = new StringBuilder();
+        try (BufferedReader reader = new BufferedReader(new FileReader(caminhoCompleto))) {
             String linha;
-            System.out.println("Conteúdo do arquivo:");
             while ((linha = reader.readLine()) != null) {
-                System.out.println(linha);
+                conteudo.append(linha).append("\n");
             }
         } catch (IOException e) {
-            System.err.println("Erro ao ler o arquivo: " + e.getMessage());
+            System.err.println("Erro ao ler o arquivo " + nomeArquivo + ": " + e.getMessage());
         }
+        return conteudo.toString();
     }
 }
 

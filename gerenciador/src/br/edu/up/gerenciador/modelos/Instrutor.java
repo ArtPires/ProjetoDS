@@ -68,4 +68,13 @@ public class Instrutor {
     public void darAula(){
         
     }
+
+    @Override
+    public String toString() {
+        return "Aluno {" + 
+        "nome='" + this.nome + '\'' +
+        " tipo de aula='" + this.tipoDeAula + '\'' +
+        " disponibilidade='" + this.disponibilidade + 
+        '}';
+    }
 }
