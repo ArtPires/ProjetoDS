@@ -88,7 +88,6 @@ public class FileManager {
 
             String linha;
             while ((linha = leitor.readLine()) != null) {
-                // Se a linha não contiver o nome do item, escreva-a no arquivo temporário
                 if (!linha.contains(nomeItem)) {
                     escritor.write(linha + "\n");
                 }
@@ -97,10 +96,24 @@ public class FileManager {
             leitor.close();
             escritor.close();
 
-            // Renomeie o arquivo temporário para substituir o arquivo original
             arquivoTemporario.renameTo(arquivo);
         } catch (IOException e) {
             System.out.println("Erro ao excluir item: " + e.getMessage());
+        }
+    }
+
+    public static void salvarAlunosEmArquivo(Aluno aluno) {
+        try {
+            FileWriter writer = new FileWriter("alunos_cadastrados.txt", true);
+            writer.write("Nome: " + aluno.getNome() + "\n");
+            writer.write("Matrícula: " + aluno.getMatricula() + "\n");
+            writer.write("Altura: " + aluno.getAltura() + "\n");
+            writer.write("Peso: " + aluno.getPeso() + "\n");
+            writer.write("Idade: " + aluno.getIdade() + "\n\n");
+            writer.close();
+            System.out.println("Dados do aluno salvos com sucesso!");
+        } catch (IOException e) {
+            System.out.println("Erro ao salvar dados!  " + e.getMessage());
         }
     }
 

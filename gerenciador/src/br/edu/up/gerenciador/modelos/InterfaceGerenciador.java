@@ -8,7 +8,7 @@ public class InterfaceGerenciador {
     private Scanner scanner;
     private FileManager fileManager;
     private Treino treino;
-    private ArrayList<String> fichasDeTreino; // Lista para armazenar as fichas de treino
+    private ArrayList<String> fichasDeTreino;
     private ArrayList<Instrutor> instrutores;
     private ArrayList<Aluno> alunos;
    
@@ -32,7 +32,7 @@ public class InterfaceGerenciador {
             System.out.println("3. Sair");
 
             int opcao = scanner.nextInt();
-            scanner.nextLine(); // Limpar o buffer do scanner
+            scanner.nextLine(); 
 
             switch (opcao) {
                 case 1:
@@ -74,17 +74,8 @@ public class InterfaceGerenciador {
         System.out.println("Digite a sua idade: ");
         int idade = scanner.nextInt();
 
-       Aluno aluno = new Aluno(nome, altura, peso, idade);
-       alunos.add(aluno);
-       // aluno = new Aluno(nome, matricula, altura, peso, idade);
-        //scanner.nextLine(); // Limpar o buffer do scanner
-
-        // System.out.println("Digite o seu objetivo de treino:");
-        // String objetivo = scanner.nextLine();
-        // aluno.definirObjetivo(objetivo);
-        // System.out.println("Objetivo de treino definido com sucesso!");
-
- 
+        Aluno aluno = new Aluno(nome, altura, peso, idade);
+        alunos.add(aluno);
     }
 
     // private void solicitarFichaDeTreino() {
@@ -125,28 +116,30 @@ public class InterfaceGerenciador {
             System.out.println("7. Voltar ao menu principal");
 
             int opcao = scanner.nextInt();
-            scanner.nextLine(); // Limpar o buffer do scanner
+            scanner.nextLine();
 
             switch (opcao) {
                 case 1:
                     criarInstrutor();
                     break;
                 case 2:
-                salvarDadosInstrutores(instrutores);
+                    salvarDadosInstrutores(instrutores);
 
                     break;
                 case 3: 
-                editarInstrutor();  
-
-                case 4:  
-                excluirInstrutor();
+                    editarInstrutor();  
                     break;
 
-                case 5: editarUsuario();
+                case 4:  
+                    excluirInstrutor();
+                    break;
+
+                case 5: 
+                    editarUsuario();
                     break;
 
                 case 6: 
-                excluirUsuario();
+                    excluirUsuario();
                     break;
                     
                 case 7: 

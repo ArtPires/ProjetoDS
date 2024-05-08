@@ -140,10 +140,13 @@ public class Treino {
     public Boolean filtroDeTreino(Aluno novoAluno) {
         System.out.println("Filtrando treino para o aluno " + novoAluno.getNome());
         
-        if (novoAluno.getIdade() >= 12 && novoAluno.getIdade() <= 15 && novoAluno.getObjetivoTreino() == "Pré-Adolescentes") {
-            // Pré-adolescentes
-            return true;
-        } 
+        if (novoAluno.getIdade() >= 12 && novoAluno.getIdade() <= 15){
+            if (novoAluno.getObjetivoTreino() == "Pré-Adolescentes") {
+                return true;
+            } else {
+                return false;
+            }
+        }
         if (novoAluno.getIdade() >= 16 && novoAluno.getIdade() <= 55) {
             double imc = calcularIMC(novoAluno.getPeso(), novoAluno.getAltura());
             if (imc < 16) {

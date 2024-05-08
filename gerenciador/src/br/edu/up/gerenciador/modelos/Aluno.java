@@ -1,20 +1,18 @@
 // Aluno.java
 package br.edu.up.gerenciador.modelos;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Aluno {
-
-    private static int proximoNumeroMatricula = 10000;
     private String nome;
-    private String matricula; // Descomente esta linha
+    private Integer matricula;
     private Float altura;
     private Float peso;
     private int idade;
     private Float imc;
     private String objetivoTreino;
+    private Random random = new Random();
     private ArrayList<String> fichaDeTreinoRecebida;
     private ArrayList<Aluno> listaAlunos;
 
@@ -24,24 +22,11 @@ public class Aluno {
         this.peso = peso;
         this.idade = idade;
 
-        // Atribuição da matrícula deve ser feita apenas no construtor
-        this.matricula = Integer.toString(proximoNumeroMatricula);
-
-        // Incremento da matrícula para o próximo aluno
-        proximoNumeroMatricula += 15;
+        this.matricula = random.nextInt(10000);
 
         // Chame o método para salvar os dados em arquivo
-        salvarDadosEmArquivo();
+        FileManager.salvarAlunosEmArquivo(this);
     }
-    // public void receberFichaDeTreino(ArrayList<String> fichaDeTreino) {
-    //     this.fichaDeTreinoRecebida = fichaDeTreino;
-    //     System.out.println("Ficha de treino recebida para " + nome + ": ");
-    //     for (String exercicio : fichaDeTreino) {
-    //         System.out.println(exercicio);
-    //     }
-    // }
-
-    // 
 
     public void definirObjetivo(String objetivo) {
         this.objetivoTreino = objetivo;
@@ -56,11 +41,11 @@ public class Aluno {
         this.nome = nome;
     }
 
-    public String getMatricula() {
+    public Integer getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(String matricula) {
+    public void setMatricula(Integer matricula) {
         this.matricula = matricula;
     }
 
@@ -116,25 +101,5 @@ public class Aluno {
     
     public void receberFichaDeTreino(ArrayList<String> fichaDeTreino) {
         this.fichaDeTreinoRecebida = fichaDeTreino;
-        System.out.println("Ficha de treino recebida para " + nome + ": ");
-        for (String exercicio : fichaDeTreino) {
-            System.out.println(exercicio);
-        }
-
-    }
-     @SuppressWarnings("static-access")
-    public void salvarDadosEmArquivo() {
-        try {
-            FileWriter writer = new FileWriter("alunos_cadastrados.txt", true);
-            writer.write("Nome: " + this.nome + "\n");
-            writer.write("Matrícula: " + this.proximoNumeroMatricula + "\n");
-            writer.write("Altura: " + this.altura + "\n");
-            writer.write("Peso: " + this.peso + "\n");
-            writer.write("Idade: " + this.idade + "\n\n");
-            writer.close();
-            System.out.println("Dados do aluno salvos com sucesso!");
-        } catch (IOException e) {
-            System.out.println("Erro ao salvar dados!  " + e.getMessage());
-        }
     }
 }
