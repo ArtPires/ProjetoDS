@@ -7,6 +7,8 @@ public class Equipamento {
     private String nome;
     private String funcao;
 
+    public Equipamento(){}
+
     public Equipamento(String nome, String funcao) {
         this.nome = nome;
         this.funcao = funcao;

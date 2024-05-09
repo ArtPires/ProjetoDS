@@ -100,11 +100,12 @@ public class Aluno {
     
     public void receberFichaDeTreino(ArrayList<String> fichaDeTreino) {
         this.fichaDeTreinoRecebida = fichaDeTreino;
+        imprimirFichaDeTreino(this);
     }
 
-    public void imprimirFichaDeTreino(){
-        FileManager fileManager = new FileManager();
-
-        fileManager.lerArquivo("FichasDeTreino.java");
+    public void imprimirFichaDeTreino(Aluno aluno){
+            for (String linha : aluno.fichaDeTreinoRecebida) {
+                System.out.println(linha);
+        }
     }
 }

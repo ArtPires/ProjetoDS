@@ -1,14 +1,14 @@
 package br.edu.up.gerenciador.modelos;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Treino {
     private String tipoDeTreino;
     private String descricao;
     private Integer duracao;
     private ArrayList<String> fichaDeTreino;
-    private List<Equipamento> equipamentosNecessarios;
+    private ArrayList<Equipamento> equipamentosNecessarios;
+    private Equipamento equipamento = new Equipamento();
 
     // --- Construtores da classe Treino ---
     public Treino () { 
@@ -53,6 +53,8 @@ public class Treino {
     // --- Métodos únicos da classe Treino ---
 
     public ArrayList<String> gerarFichaDeTreino(Aluno novoAluno) {
+        equipamentosNecessarios.addAll(equipamento.criarEquipamentosDeExemplo());
+
         Treino treino = new Treino();
         treino.fichaDeTreino.add("Ficha de treino de: " + novoAluno.getNome());
         treino.fichaDeTreino.add("Tipo de treino: " + novoAluno.getObjetivoTreino());
@@ -80,11 +82,11 @@ public class Treino {
         if (novoAluno.getObjetivoTreino() == "Emagrecimento"){
             setDuracao(45);
             treino.fichaDeTreino.add("Duração de treino: " + duracao + " minutos");
-            fichaDeTreino.add("Exercício 1: Chest Press");
-            fichaDeTreino.add("Exercício 2: Remada Máquina");
-            fichaDeTreino.add("Exercício 3: Cadeira Flexora");
-            fichaDeTreino.add("Exercício 4: Shoulder Press");
-            fichaDeTreino.add("Exercício 5: Cardio");
+            treino.fichaDeTreino.add("Exercício 1: Chest Press");
+            treino.fichaDeTreino.add("Exercício 2: Remada Máquina");
+            treino.fichaDeTreino.add("Exercício 3: Cadeira Flexora");
+            treino.fichaDeTreino.add("Exercício 4: Shoulder Press");
+            treino.fichaDeTreino.add("Exercício 5: Cardio");
             
             treino.fichaDeTreino.add("Equipamentos necessários:");
             int contador = 1;
@@ -99,11 +101,11 @@ public class Treino {
         if (novoAluno.getObjetivoTreino() == "Qualidade de Vida"){
             setDuracao(30);
             treino.fichaDeTreino.add("Duração de treino: " + duracao + " minutos");
-            fichaDeTreino.add("Exercício 1: Aquecimento");
-            fichaDeTreino.add("Exercício 2: Crucifixo");
-            fichaDeTreino.add("Exercício 3: Puxada Alta");
-            fichaDeTreino.add("Exercício 4: Cadeira Extensora");
-            fichaDeTreino.add("Exercício 5: Cross Over Paralelo");
+            treino.fichaDeTreino.add("Exercício 1: Aquecimento");
+            treino.fichaDeTreino.add("Exercício 2: Crucifixo");
+            treino.fichaDeTreino.add("Exercício 3: Puxada Alta");
+            treino.fichaDeTreino.add("Exercício 4: Cadeira Extensora");
+            treino.fichaDeTreino.add("Exercício 5: Cross Over Paralelo");
 
             treino.fichaDeTreino.add("Equipamentos necessários:");
             int contador = 1;
@@ -118,11 +120,11 @@ public class Treino {
         if (novoAluno.getObjetivoTreino() == "Pré-Adolescentes"){
             setDuracao(45);
             treino.fichaDeTreino.add("Duração de treino: " + duracao + " minutos");
-            fichaDeTreino.add("Exercício 1: Aquecimeto");
-            fichaDeTreino.add("Exercício 2: Rosca direta");
-            fichaDeTreino.add("Exercício 3: Agachamento");
-            fichaDeTreino.add("Exercício 4: Abdominal");
-            fichaDeTreino.add("Exercício 5: Cardio");
+            treino.fichaDeTreino.add("Exercício 1: Aquecimeto");
+            treino.fichaDeTreino.add("Exercício 2: Rosca direta");
+            treino.fichaDeTreino.add("Exercício 3: Agachamento");
+            treino.fichaDeTreino.add("Exercício 4: Abdominal");
+            treino.fichaDeTreino.add("Exercício 5: Cardio");
             
             treino.fichaDeTreino.add("Equipamentos necessários:");
             int contador = 1;
@@ -134,7 +136,7 @@ public class Treino {
             }
         }
 
-        return fichaDeTreino;
+        return treino.fichaDeTreino;
     }
 
     public Boolean filtroDeTreino(Aluno novoAluno) {

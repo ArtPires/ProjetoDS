@@ -8,6 +8,10 @@ public class InterfaceAluno {
 
     public InterfaceAluno() { criarAlunos(); }
 
+    public ArrayList<Aluno> getListaAlunos() {
+        return listaAlunos;
+    }
+
     private void criarAlunos(){
         Aluno aluno01 = new Aluno("Artur", 1.75f, 60.0f, 20);
         Aluno aluno02 = new Aluno("Amanda", 1.62f, 65.0f, 22);
@@ -20,11 +24,21 @@ public class InterfaceAluno {
         listaAlunos.add(aluno04);
     }
 
-    public void pedirFichaDeTreino(Aluno aluno, Instrutor instrutor){
-        if (!aluno.solicitarFichaDeTreino(instrutor)){
-            System.out.println("Não foi possivel gerar uma ficha de treino");
-        } else {
-            aluno.imprimirFichaDeTreino();
+    public void pedirFichaDeTreino(Aluno aluno){
+
+        InterfaceInstrutor interfaceInstrutores = new InterfaceInstrutor(0);
+        Instrutor instrutor = new Instrutor();
+
+        instrutor.setListaInstrutores(interfaceInstrutores.getListaInstrutores());
+
+        for (Instrutor meuInstrutor: instrutor.getListaInstrutores()){
+            if (meuInstrutor.getDisponibilidade() == true){
+                if (!aluno.solicitarFichaDeTreino(meuInstrutor)){
+                    System.out.println("Não foi possivel gerar uma ficha de treino");
+                } 
+                
+                break;
+            }
         }
     }
 
