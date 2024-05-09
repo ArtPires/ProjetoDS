@@ -92,11 +92,18 @@ public class Aluno {
     public Boolean solicitarFichaDeTreino(Instrutor instrutor){
         if(!Instrutor.montarTreino(this, instrutor)){
             return false;
-        }
+        }        
         return true;
     }
     
     public void receberFichaDeTreino(ArrayList<String> fichaDeTreino) {
         this.fichaDeTreinoRecebida = fichaDeTreino;
+        imprimirFichaDeTreino(this);
+    }
+
+    public void imprimirFichaDeTreino(Aluno aluno){
+            for (String linha : aluno.fichaDeTreinoRecebida) {
+                System.out.println(linha);
+        }
     }
 }

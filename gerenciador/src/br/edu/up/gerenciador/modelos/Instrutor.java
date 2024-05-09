@@ -7,7 +7,8 @@ public class Instrutor {
     private String nome;
     private String tipoDeAula;
     private boolean disponibilidade;
-    private ArrayList<Instrutor> listaInstrutores;
+    private InterfaceInstrutor interfaceInstrutor = new InterfaceInstrutor(1);
+    private ArrayList<Instrutor> listaInstrutores = new ArrayList<>();
 
     // --- Construtores da classe Instrutor ---
 
@@ -49,7 +50,7 @@ public class Instrutor {
     }
 
     public void setListaInstrutores(ArrayList<Instrutor> listaInstrutores) {
-        this.listaInstrutores = listaInstrutores;
+        this.listaInstrutores.addAll(listaInstrutores);
     }
 
 
@@ -74,6 +75,7 @@ public class Instrutor {
     }
 
     public String instrutorDisponivel(){
+        listaInstrutores.addAll(interfaceInstrutor.getListaInstrutores());
         for(Instrutor instrutor: listaInstrutores){
             if(instrutor.getDisponibilidade()){
                 return instrutor.getNome();
