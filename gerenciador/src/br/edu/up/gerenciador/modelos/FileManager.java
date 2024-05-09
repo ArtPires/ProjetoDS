@@ -1,4 +1,3 @@
-// FileManager.java
 package br.edu.up.gerenciador.modelos;
 
 import java.io.BufferedReader;
@@ -9,7 +8,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class FileManager {
-    // Método para escrever em um arquivo
     public void escreverArquivo(String nomeArquivo, String conteudo) {
         try {
             FileWriter escritor = new FileWriter(nomeArquivo);
@@ -22,7 +20,6 @@ public class FileManager {
         }
     }
 
-    // Método para ler um arquivo
     public String lerArquivo(String nomeArquivo) {
         StringBuilder conteudo = new StringBuilder();
         try {
@@ -39,7 +36,6 @@ public class FileManager {
         return conteudo.toString();
     }
 
-    // Método para procurar por uma string em um arquivo
     public boolean procurarNoArquivo(String nomeArquivo, String textoProcurado) {
         try {
             BufferedReader leitor = new BufferedReader(new FileReader(nomeArquivo));
@@ -58,7 +54,6 @@ public class FileManager {
         return false;
     }
 
-    // Método para editar um arquivo
     public void editarArquivo(String nomeArquivo, String textoAntigo, String textoNovo) {
         try {
             BufferedReader leitor = new BufferedReader(new FileReader(nomeArquivo));
@@ -102,24 +97,29 @@ public class FileManager {
         }
     }
 
-    public static void salvarAlunosEmArquivo(Aluno aluno) {
+    public void editarArquivoItem(String nomeArquivo, String textoAntigo, String textoNovo) {
         try {
-            FileWriter writer = new FileWriter("alunos_cadastrados.txt", true);
-            writer.write("Nome: " + aluno.getNome() + "\n");
-            writer.write("Matrícula: " + aluno.getMatricula() + "\n");
-            writer.write("Altura: " + aluno.getAltura() + "\n");
-            writer.write("Peso: " + aluno.getPeso() + "\n");
-            writer.write("Idade: " + aluno.getIdade() + "\n\n");
-            writer.close();
-            System.out.println("Dados do aluno salvos com sucesso!");
+            BufferedReader leitor = new BufferedReader(new FileReader(nomeArquivo));
+            StringBuilder conteudo = new StringBuilder();
+            String linha;
+            while ((linha = leitor.readLine()) != null) {
+                if (linha.contains(textoAntigo)) {
+                    linha = linha.replaceAll(textoAntigo, textoNovo);
+                }
+                conteudo.append(linha).append("\n");
+            }
+            leitor.close();
+            FileWriter escritor = new FileWriter(nomeArquivo);
+            escritor.write(conteudo.toString());
+            escritor.close();
+            System.out.println("Arquivo " + nomeArquivo + " editado com sucesso!");
         } catch (IOException e) {
-            System.out.println("Erro ao salvar dados!  " + e.getMessage());
+            e.printStackTrace();
+            System.out.println("Erro ao editar o arquivo " + nomeArquivo);
         }
     }
 
-    public void editarArquivoItem(String string, String nomeUsuario) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'editarArquivoItem'");
+    public static void salvarAlunosEmArquivo(Aluno aluno) {
+                // throw new UnsupportedOperationException("Unimplemented method 'salvarAlunosEmArquivo'");
     }
-
 }

@@ -22,6 +22,39 @@ public class InterfaceGerenciador {
 
     }
 
+    public void editarInstrutor(String nomeInstrutor) {
+        System.out.println("Editar Instrutor:");
+            Instrutor instrutor = encontrarInstrutorPorNome(nomeInstrutor);
+        if (instrutor != null) {
+            // Edite os dados do instrutor conforme necessário
+            instrutor.setNome("Novo nome");
+            instrutor.setTipoDeAula("Novo tipo de aula");
+            // Salve os dados atualizados
+            salvarDadosInstrutores(instrutores);
+            System.out.println("Dados do instrutor editados com sucesso!");
+        } else {
+            System.out.println("Instrutor não encontrado!");
+        }
+    }
+
+    public void excluirInstrutor(String nomeInstrutor) {
+        System.out.println("Excluir Instrutor:");
+            Instrutor instrutor = encontrarInstrutorPorNome(nomeInstrutor);
+        if (instrutor != null) {
+            instrutores.remove(instrutor);
+            // Salve os dados atualizados
+            salvarDadosInstrutores(instrutores);
+            System.out.println("Instrutor excluído com sucesso!");
+        } else {
+            System.out.println("Instrutor não encontrado!");
+        }
+    }
+
+
+    private Instrutor encontrarInstrutorPorNome(String nomeInstrutor) {
+        throw new UnsupportedOperationException("Unimplemented method 'encontrarInstrutorPorNome'");
+    }
+
     public void exibirMenu() {
         boolean continuar = true;
         while (continuar) {
@@ -45,7 +78,7 @@ public class InterfaceGerenciador {
                     continuar = false;
                     break;
                 default:
-                    System.out.println("Opção inválida. Por favor, selecione novamente.");
+                    System.out.println("Opção inválida. Por favor, selecione uma das opções disponiveis.");
             }
         }
     }
@@ -76,29 +109,21 @@ public class InterfaceGerenciador {
 
         Aluno aluno = new Aluno(nome, altura, peso, idade);
         alunos.add(aluno);
-    }
 
-    // private void solicitarFichaDeTreino() {
-    //     System.out.println("Deseja solicitar uma ficha de treino para um instrutor? (S/N)");
-    //     String resposta = scanner.nextLine();
-    //     if (resposta.equalsIgnoreCase("S")) {
-    //         System.out.println("Digite o nome do instrutor:");
-    //         String nomeInstrutor = scanner.nextLine();
-    //         scanner.nextLine(); // Limpar o buffer do scanner
+        Instrutor instrutor = new Instrutor("Juarez", "Musculação");
 
-            // Instrutor instrutor = new Instrutor(nomeInstrutor, "Tipo de Aula");
-            // treino = new Treino(aluno, instrutor, "Descrição do Treino");
-            // treino.gerarFichaDeTreino();
-            // treino.enviarFichaDeTreino();
+        solicitarFichaDeTreino(aluno, instrutor);
+    }        
 
-            // // Adiciona a ficha de treino à lista
-            // fichasDeTreino.add(treino.toString());
-            // // Gera um arquivo para a ficha de treino do aluno
-            // gerarArquivoFichaDeTreino(aluno.getMatricula(), treino.toString());
+    private void solicitarFichaDeTreino(Aluno aluno, Instrutor instrutor) {
+        System.out.println("Deseja solicitar uma ficha de treino para um instrutor? (S/N)");
+        String resposta = scanner.nextLine();
+        if (resposta.equalsIgnoreCase("S")) {
+            aluno.solicitarFichaDeTreino(instrutor);
+        }
 
-        // }
+    }    
 
-    // }
 
     private boolean verificarSenha(String senha) {
         return senha.equals("12345");
@@ -123,30 +148,28 @@ public class InterfaceGerenciador {
                     criarInstrutor();
                     break;
                 case 2:
-                    salvarDadosInstrutores(instrutores);
-
+                    editarInstrutor();
                     break;
-                case 3: 
-                    editarInstrutor();  
-                    break;
-
-                case 4:  
+                case 3:  
                     excluirInstrutor();
                     break;
 
-                case 5: 
+                case 4: 
                     editarUsuario();
                     break;
 
-                case 6: 
+                case 5: 
                     excluirUsuario();
                     break;
                     
-                case 7: 
+                case 6: 
+                     salvarDadosInstrutores(instrutores);
+                     break;
+                case 7:
                     continuar = false;
                     break;
                 default:
-                    System.out.println("Opção inválida. Por favor, selecione novamente.");
+                    System.out.println("Opção inválida. Por favor, escolha uma das opções fornecidas.");
             }
         }
     }
@@ -159,49 +182,37 @@ public class InterfaceGerenciador {
         Instrutor instrutor = new Instrutor(nomeInstrutor, tipoDeAula);
         instrutores.add(instrutor);
         System.out.println("                                                                      Instrutor criado com sucesso!                          \n");
+    
     }
 
     
     private void salvarDadosInstrutores(ArrayList<Instrutor> instrutores2) {
-        StringBuilder conteudoArquivo = new StringBuilder();
-        conteudoArquivo.append("Lista de Instrutores:\n\n");
-        for (Instrutor instrutor : instrutores) {
-            conteudoArquivo.append("Nome: ").append(instrutor.getNome()).append("\n");
-            conteudoArquivo.append("Tipo de Aula: ").append(instrutor.getTipoDeAula()).append("\n\n");
-        }
+    StringBuilder conteudoArquivo = new StringBuilder();
+    conteudoArquivo.append("Lista de Instrutores:\n\n");
+    for (Instrutor instrutor : instrutores) {
+    conteudoArquivo.append("Nome: ").append(instrutor.getNome()).append("\n");
+    conteudoArquivo.append("Tipo de Aula: ").append(instrutor.getTipoDeAula()).append("\n\n");
+    }
 
-        // Nome fixo para o arquivo de instrutores
         String nomeArquivo = "instrutores.txt";
 
         fileManager.escreverArquivo(nomeArquivo, conteudoArquivo.toString());
         System.out.println("Dados dos instrutores salvos em arquivo '" + nomeArquivo + "' com sucesso! \n");
     }
-    // private void salvarDadosAlunos(Aluno aluno) {
-    //     try {
-    //         FileWriter writer = new FileWriter("alunos.txt", true);
-    //         writer.write("Nome: " + aluno.getNome() + "\n");
-    //         writer.write("Matrícula: " + aluno.getMatricula() + "\n");
-    //         writer.write("Altura: " + aluno.getAltura() + "\n");
-    //         writer.write("Peso: " + aluno.getPeso() + "\n");
-    //         writer.write("Idade: " + aluno.getIdade() + "\n\n");
-    //         writer.close();
-    //         System.out.println("Dados do aluno salvos em arquivo 'alunos.txt' com sucesso!");
-    //     } catch (IOException e) {
-    //         System.out.println("Erro ao salvar dados do aluno em arquivo: " + e.getMessage());
-    //     }
-    private void editarInstrutor() {
+  
+    public void editarInstrutor() {
         System.out.println("Editar Instrutor:");
         System.out.println("Digite o nome do instrutor que deseja editar:");
         String nomeInstrutor = scanner.nextLine();
-        // Aqui você pode implementar a lógica para editar os dados do instrutor
+        fileManager.editarArquivoItem("instrutores.txt", nomeInstrutor, nomeInstrutor);
         System.out.println("Dados do instrutor editados com sucesso!");
+        
     }
-
-    private void excluirInstrutor() {
+    public void excluirInstrutor() {
         System.out.println("Excluir Instrutor:");
         System.out.println("Digite o nome do instrutor que deseja excluir:");
         String nomeInstrutor = scanner.nextLine();
-        fileManager.excluirItem("instrutores_cadastrados.txt", nomeInstrutor);
+        fileManager.excluirItem("instrutores.txt", nomeInstrutor);
         System.out.println("Instrutor excluído com sucesso!");
     }
     
@@ -209,7 +220,7 @@ public class InterfaceGerenciador {
         System.out.println("Editar Usuário:");
         System.out.println("Digite o nome do usuário que deseja editar:");
         String nomeUsuario = scanner.nextLine();
-        fileManager.editarArquivoItem("instrutores_cadastrados.txt", nomeUsuario);
+        fileManager.editarArquivoItem("alunos_cadastrados.txt", nomeUsuario, nomeUsuario);
         System.out.println("Dados do usuário editados com sucesso!");
     }
 
@@ -217,7 +228,7 @@ public class InterfaceGerenciador {
         System.out.println("Excluir Usuário:");
         System.out.println("Digite o nome do usuário que deseja excluir:");
         String nomeUsuario = scanner.nextLine();
-        fileManager.excluirItem("usuarios_cadastrados.txt", nomeUsuario);
+        fileManager.excluirItem("alunos_cadastrados.txt", nomeUsuario);
         System.out.println("Usuário excluído com sucesso!");
     }
 }

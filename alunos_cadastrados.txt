@@ -58,3 +58,15 @@ Altura: 1.78
 Peso: 69.5
 Idade: 60
 
+Nome: Amanda
+Matrícula: 3473
+Altura: 1.6399999856948853
+Peso: 68.9000015258789
+Idade: 22
+
+Nome: zezin
+Matrícula: 1151
+Altura: 1.649999976158142
+Peso: 56.79999923706055
+Idade: 25
+

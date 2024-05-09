@@ -1,2 +1,0 @@
-Aluno {nome='Artur' matricula='123456' objetivo='Ganhar massa}
-Aluno {nome='Artur' matricula='123456' objetivo='Ganhar massa}

@@ -24,7 +24,6 @@ public class Aluno {
 
         this.matricula = random.nextInt(10000);
 
-        // Chame o método para salvar os dados em arquivo
         FileManager.salvarAlunosEmArquivo(this);
     }
 
@@ -89,11 +88,9 @@ public class Aluno {
         this.objetivoTreino = objetivoTreino;
     }
   
-    // --- Métodos únicos da classe Aluno ---
     
     public Boolean solicitarFichaDeTreino(Instrutor instrutor){
         if(!Instrutor.montarTreino(this, instrutor)){
-            // TODO: solicitar ao usuário para definir outro tipo de treino
             return false;
         }
         return true;
