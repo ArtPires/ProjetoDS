@@ -93,13 +93,18 @@ public class Aluno {
     
     public Boolean solicitarFichaDeTreino(Instrutor instrutor){
         if(!Instrutor.montarTreino(this, instrutor)){
-            // TODO: solicitar ao usuário para definir outro tipo de treino
             return false;
-        }
+        }        
         return true;
     }
     
     public void receberFichaDeTreino(ArrayList<String> fichaDeTreino) {
         this.fichaDeTreinoRecebida = fichaDeTreino;
+    }
+
+    public void imprimirFichaDeTreino(){
+        FileManager fileManager = new FileManager();
+
+        fileManager.lerArquivo("FichasDeTreino.java");
     }
 }
